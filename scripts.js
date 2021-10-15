@@ -1,14 +1,10 @@
 let nextPlayer = 'X'; // takes a value of either 'X' or 'O' according to the game turns
 
 //initialize the game
-var initializerBtn = document.createElement('button');
-initializerBtn.innerText = 'Click this Button to Start a New Game!';
-document.getElementById('game-over-lbl').appendChild(initializerBtn);
-initializerBtn.addEventListener('click', (initialEvent) => {initialEvent.target.hidden = true;});
 
 // use the value stored in the nextPlayer variable to indicate who the next player is
 let playerIndicator = document.querySelector('b')
-let playerText = 'Next Player: ';
+let playerText = 'Next Player: ' + nextPlayer;
 playerIndicator.innerText = playerText;//says the next player is the player indicated by nextPlayer
 
 //This call will create the buttons needed for the gameboard.
@@ -35,17 +31,16 @@ function takeCell(event)
 {   /*
         When the button is clicked, the space inside its square brackets is replaced by the value in the nextPlayer before switching it
     */
-    if (event.target.innerText !== 'Click this Button to Start a New Game!') {//for every button that isn't the initializer button
-        event.target.innerText = nextPlayer;//sets the button to have the inner text matching the player's letter
-        if (nextPlayer === 'X') {
-            nextPlayer = 'O';//for next player, set to X
-        }
-        else{
-            if (nextPlayer === 'O') {
-                nextPlayer = 'X';//for next player, set to X
-            }
+    event.target.innerText = nextPlayer;//sets the button to have the inner text matching the player's letter
+    if (nextPlayer === 'X') {
+        nextPlayer = 'O';//for next player, set to X
+    }
+    else{
+        if (nextPlayer === 'O') {
+            nextPlayer = 'X';//for next player, set to X
         }
     }
+    
     let playerText = 'Next Player: ' + nextPlayer;
     playerIndicator.innerText = playerText;//changes after the nextPlayer variable changes
     // Make sure the button is clickable only once (I didn't mention how to do that, look it up :) )
